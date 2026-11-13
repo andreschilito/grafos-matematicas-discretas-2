@@ -123,67 +123,38 @@ def is_connected(graph, directed=False):
 
 
 
-
-
-
-
-
 """
-#Tests:
-# Test Point 3
 
-# Create an empty graph
-graph = {}
+# Load the graph from the CSV file
+graph, weights = load_graph("graphs/ejemplo_1.csv", directed=False)
 
-# Add vertices
-add_vertex(graph, "A")
-add_vertex(graph, "B")
-add_vertex(graph, "C")
+# Print the graph
+print("Graph:", graph)
 
-# Add edges
-add_edge(graph, "A", "B")
-add_edge(graph, "B", "C")
+# Print the weights
+print("Weights:", weights)
 
-# Show the graph
-print(graph)
-
-# Test Point 4
-
-# Create an empty directed graph
-directed_graph = {}
-
-# Add directed edges
-add_directed_edge(directed_graph, "A", "B")
-add_directed_edge(directed_graph, "B", "C")
-
-# Show the directed graph
-print("Directed graph:", directed_graph)
-
-# Test Point 4
-
-# Create an empty directed graph
-directed_graph = {}
-
-# Add directed edges
-add_directed_edge(directed_graph, "A", "B")
-add_directed_edge(directed_graph, "B", "C")
-
-# Show the directed graph
-print("Directed graph:", directed_graph)
-
-
-# Test Point 6
-
-# Create a connected graph
-graph = {}
-
-add_edge(graph, "A", "B")
-add_edge(graph, "B", "C")
-
-is_connected(graph)
-
-# Add an isolated vertex
-add_vertex(graph, "D")
-
-is_connected(graph)
+# Check if the graph is connected
+is_connected(graph, directed=False)
 """
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

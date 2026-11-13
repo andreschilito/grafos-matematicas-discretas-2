@@ -56,5 +56,3 @@ Para esto utilizamos dos listas: `visited`, que almacena los vértices ya visita
 En los grafos no dirigidos comenzamos el recorrido desde un solo vértice, mientras que en los dirigidos realizamos el recorrido desde cada vértice para verificar que todos puedan alcanzar a los demás y así garantizar que el grafo sea fuertemente conexo.
 
 Luego, comparamos la cantidad de vértices visitados con la cantidad total de vértices del grafo para determinar el resultado.
-
-Adicionalmente, agregamos una sección que dejamos comentada para realizar pruebas con los archivos `ejemplo.csv`.
