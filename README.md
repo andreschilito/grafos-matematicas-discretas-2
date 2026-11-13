@@ -56,3 +56,48 @@ Para esto utilizamos dos listas: `visited`, que almacena los vértices ya visita
 En los grafos no dirigidos comenzamos el recorrido desde un solo vértice, mientras que en los dirigidos realizamos el recorrido desde cada vértice para verificar que todos puedan alcanzar a los demás y así garantizar que el grafo sea fuertemente conexo.
 
 Luego, comparamos la cantidad de vértices visitados con la cantidad total de vértices del grafo para determinar el resultado.
+
+## Point 7: Graph cycles
+
+### Implementación
+
+Para este punto buscamos verificar si un grafo tiene ciclos, es decir, si existe un camino que nos permita regresar a un vértice sin repetir las mismas aristas. Pensamos en usar la función del punto anterior, pero no pudimos. Así que al final decidimos utilizar una idea parecida a la del punto 6, aprovechando las listas `visited` y `pending` para recorrer el grafo y revisar sus conexiones.
+
+- `has_cycle(graph, directed=False)`: recorre el grafo para comprobar si tiene ciclos, retornando e imprimiendo `True` o `False`. Igual que en los puntos anteriores, debemos indicar manualmente si el grafo es dirigido cambiando el valor de `directed`.
+
+Para los grafos no dirigidos utilizamos una variable llamada `previous`, que nos permite saber de qué vértice venimos. Esto es importante porque regresar al vértice anterior no significa que exista un ciclo (error aprendido).
+
+En los grafos dirigidos lo hicimos de otra forma. Revisamos cada conexión para comprobar si desde el vértice de destino podemos regresar al vértice de origen. Si ocurre, significa que encontramos un ciclo.
+
+Finalmente, si encontramos un ciclo la función imprime `has_cycle: True` y retorna `True`. Si terminamos de revisar el grafo sin encontrar ninguno, imprime `has_cycle: False` y retorna `False`.
+
+Tratamos de mantener la misma estructura a la función anterior para no complicar tanto el código y poder reutilizar lo que ya habíamos hecho.
+
+## Point 8: Tree verification
+
+### Implementación
+
+Para este punto necesitábamos verificar si un grafo es un árbol. Asi que elegimos trabajar con grafos no dirigidos, como vimos en clase, para que un grafo sea un árbol debe ser conexo y no tener ciclos.
+
+Decidimos aprovechar las funciones que ya habíamos hecho en los puntos 6 y 7 para no repetir todo el código.
+
+- `is_tree(graph)`: verifica si un grafo es un árbol utilizando las funciones `is_connected()` y `has_cycle()`.
+
+Primero revisamos si el grafo es conexo y después si tiene ciclos. Si el grafo es conexo y no tiene ciclos, la función imprime y retorna `True`. En caso contrario, imprime y retorna `False`.
+
+De esta forma pudimos reutilizar lo que ya habíamos hecho en los puntos anteriores.
+
+## Point 9: Forest verification
+
+### Implementación
+
+Para este punto necesitábamos verificar si un grafo es un bosque. Igual que en el punto anterior, nos fuimos con los grafos no dirigidos. Según lo que vimos en clase, un bosque es un grafo no dirigido que no tiene ciclos, pero que no necesariamente debe ser conexo.
+
+Decidimos utilizar la función que ya habíamos hecho en el punto 7, ya que con ella podemos saber si existen ciclos en el grafo.
+
+- `is_forest(graph)`: verifica si un grafo es un bosque utilizando la función `has_cycle()`.
+
+Primero revisamos si el grafo tiene ciclos. Si no encontramos ninguno, significa que es un bosque y la función imprime y retorna `True`. Si encontramos un ciclo, imprime y retorna `False`.
+
+A diferencia del punto 8, no necesitamos revisar si el grafo es conexo, porque un bosque puede tener varias partes separadas (arboles).
+
