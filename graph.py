@@ -119,6 +119,108 @@ def is_connected(graph, directed=False):
     print("is_connected: True")
     return True
 
+# Point 7: Graph cycles
+
+# Check if a graph has cycles
+def has_cycle(graph, directed=False):
+
+    # Check cycles in directed graphs
+    if directed:
+
+        # Check each connection
+        for vertex in graph:
+            for neighbor in graph[vertex]:
+
+                visited = []
+                pending = [neighbor]
+
+                # Explore the graph
+                while pending:
+                    current = pending.pop()
+
+                    # Check if we returned to the starting vertex
+                    if current == vertex:
+                        print("has_cycle: True")
+                        return True
+
+                    if current not in visited:
+                        visited.append(current)
+
+                        # Add neighbors to pending
+                        for next_vertex in graph[current]:
+                            if next_vertex not in visited:
+                                pending.append(next_vertex)
+
+    # Check cycles in undirected graphs
+    else:
+        visited = []
+
+        # Check all vertices
+        for start in graph:
+            if start not in visited:
+
+                pending = [(start, None)]
+
+                while pending:
+                    vertex, previous = pending.pop()
+
+                    if vertex not in visited:
+                        visited.append(vertex)
+
+                        # Check the neighbors
+                        for neighbor in graph[vertex]:
+
+                            if neighbor not in visited:
+                                pending.append((neighbor, vertex))
+
+                            # Check if the neighbor was already visited
+                            elif neighbor != previous:
+                                print("has_cycle: True")
+                                return True
+
+    print("has_cycle: False")
+    return False
+
+
+# Point 8: Tree verification
+
+# Check if a graph is a tree
+def is_tree(graph):
+
+    # Check if the graph is connected
+    connected = is_connected(graph)
+
+    # Check if the graph has cycles
+    cycle = has_cycle(graph)
+
+    # A tree must be connected and have no cycles
+    if connected and not cycle:
+        print("is_tree: True")
+        return True
+
+    else:
+        print("is_tree: False")
+        return False
+
+# Point 9: Forest verification
+
+# Check if a graph is a forest
+def is_forest(graph):
+
+    # Check if the graph has cycles
+    cycle = has_cycle(graph)
+
+    # A forest cannot have cycles
+    if not cycle:
+        print("is_forest: True")
+        return True
+
+    else:
+        print("is_forest: False")
+        return False
+
+
+
 
 
 
