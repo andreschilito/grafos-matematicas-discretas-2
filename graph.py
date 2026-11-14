@@ -238,6 +238,16 @@ print("Weights:", weights)
 
 # Check if the graph is connected
 is_connected(graph, directed=False)
+
+# Check if the graph has cycles
+has_cycle(graph, directed=False)
+
+# Check if the graph is a tree
+is_tree(graph)
+
+# Check if the graph is a forest
+is_forest(graph)
+
 """
 
 
